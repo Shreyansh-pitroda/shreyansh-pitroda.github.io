@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shreyansh Pitroda | Robotics Research | Northeastern University</title>
+    <meta name="description" content="PhD Candidate researching thruster-assisted bipedal locomotion, QP-MPC frameworks, and bio-inspired robotics at Northeastern University">
+    <meta name="keywords" content="robotics, bipedal locomotion, QP-MPC, T-SLIP, Harpy robot, control systems, northeastern university">
+    <meta name="author" content="Shreyansh Pitroda">
+    
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Shreyansh Pitroda - Robotics Research Portfolio">
+    <meta property="og:description" content="PhD research in thruster-assisted bipedal locomotion and dynamic control systems">
+    <meta property="og:type" content="website">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Professional Academic Color Scheme - Light Theme */
+            --primary-color: #3262fe;      /* Deep professional blue */
+            --secondary-color: #ff6161;    /* Academic purple */
+            --accent-color: #0891b2;       /* Cyan for highlights */
+            --success-color: #059669;      /* Green for published */
+            --warning-color: #ea580c;      /* Orange for pending */
+            
+            --text-primary: #111827;       /* Nearly black for main text */
+            --text-secondary: #4b5563;     /* Gray for secondary text */
+            --text-muted: #6b7280;         /* Lighter gray for muted text */
+            
+            --bg-primary: #ffffff;          /* Pure white background */
+            --bg-secondary: #f9fafb;       /* Very light gray */
+            --bg-card: #ffffff;            /* White cards */
+            
+            --border-color: #e5e7eb;       /* Light gray borders */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            color: var(--text-primary);
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #faf5ff 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 20% 50%, rgba(30, 64, 175, 0.05) 0%, transparent 50%),
+                              radial-gradient(circle at 80% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .hero-affiliation {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .hero-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Contact Buttons */
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-secondary);
+            margin-left: 0;
+            margin-right: 0;
+            max-width: none;
+        }
+
+        .section:nth-child(even) > * {
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto 1rem;
+            border-radius: 2px;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Research Cards */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .research-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .research-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .research-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .research-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .research-metrics {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .metric {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .metric-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+        }
+
+        /* Publications Section */
+        .publications-container {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .publication-year {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .publication-year:first-child {
+            margin-top: 0;
+        }
+
+        .publication-item {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .publication-venue {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .publication-title {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+
+        .publication-authors {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        .publication-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-left: 0.5rem;
+        }
+
+        .status-published {
+            background: #dcfce7;
+            color: var(--success-color);
+        }
+
+        .status-accepted {
+            background: #e9d5ff;
+            color: var(--secondary-color);
+        }
+
+        .status-submitted {
+            background: #fed7aa;
+            color: var(--warning-color);
+        }
+
+        /* Video Gallery */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .video-placeholder {
+            aspect-ratio: 16/9;
+            background: linear-gradient(135deg, #dbeafe 0%, #e9d5ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            
+        }
+
+        .play-button {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: var(--secondary-color);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        .video-info {
+            padding: 1.5rem;
+        }
+
+        .video-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .video-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: #e0e7ff;
+            border: 1px solid #c7d2fe;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .skill-category h3 {
+            font-size: 1.125rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .skill-list li:hover {
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+
+        .skill-list li::before {
+            content: '→';
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 45%;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            box-shadow: var(--shadow-xl);
+            transform: translateY(-2px);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-org {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        /* Print Styles */
+        @media print {
+            .navigation, .video-grid, footer {
+                display: none;
+            }
+            
+            body {
+                font-size: 11pt;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-stats {
+                margin-top: 2rem;
+            }
+
+            .contact-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                justify-content: flex-start;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .research-grid, .video-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="nav-logo">Shreyansh Pitroda</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#media">Media</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Shreyansh Kaushik Pitroda</h1>
+                <p class="hero-subtitle">Ph.D. Student in Computer Engineering</p>
+                <p class="hero-affiliation">Northeastern University | Advisor: Prof. Alireza Ramezani</p>
+                
+                <p class="hero-description">
+                    Advancing the frontier of legged robotics through bio-inspired thruster-assisted locomotion. 
+                    My research focuses on developing novel control frameworks for multimodal robots, 
+                    enabling unprecedented mobility in challenging environments through the integration 
+                    of aerial and terrestrial locomotion paradigms.
+                </p>
+
+                <div class="contact-buttons">
+                    <a href="mailto:pitroda.s@northeastern.edu" class="btn btn-primary">
+                        📧 Contact Me
+                    </a>
+                    <a href="https://drive.google.com/file/d/1vFj9pPpnWpBuf2w0zoYtU3PauSGM747Z/view?usp=drive_link" class="btn btn-secondary">
+                        📄 Download CV
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=GGIr1OEAAAAJ&hl=en" class="btn btn-secondary" target="_blank">
+                        📚 Google Scholar
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">11+</div>
+                    <div class="stat-label">Publications</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">US Patent</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Research Portfolio</h2>
+            <div class="section-subtitle"></div>
+            <p class="section-description">
+                Pioneering multimodal locomotion through the convergence of aerial and terrestrial robotics
+            </p>
+        </div>
+
+        <div class="research-grid">
+            <div class="research-card">
+                <h3>Harpy: Thruster-Assisted Bipedal Platform</h3>
+                <p>
+                    Development of a 7kg bipedal robot featuring dual 5.5kg thrust capacity thrusters, 
+                    achieving a 1.5 thrust-to-weight ratio. This platform serves as a testbed for 
+                    validating novel control algorithms in multimodal locomotion.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">⚡</div>
+                        <span>30% Power Density Gain</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">🎯</div>
+                        <span>500Hz Control Rate</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <h3>QP-MPC Framework for Extreme Terrain</h3>
+                <p>
+                    Quadratic Programming Model Predictive Control enabling locomotion on 30° inclines. 
+                    Real-time optimization at 100Hz with friction cone constraints and dynamic force 
+                    distribution between ground and aerial actuation.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">📐</div>
+                        <span>30° Slope Capability</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">⏱️</div>
+                        <span>10ms Computation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <h3>Capture Point Control Architecture</h3>
+                <p>
+                    Novel buoyancy-based capture point controller achieving the first demonstration of 
+                    thruster-assisted walking. Includes Extended Kalman Filter for sensor fusion and 
+                    robust push recovery mechanisms.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">🏆</div>
+                        <span>World's First Demo</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">📊</div>
+                        <span>EKF State Estimation</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <h3>Momentum-Based Force Observation</h3>
+                <p>
+                    Conjugate momentum observer for accurate thruster force estimation under varying 
+                    conditions. Terrain-aware modeling with pinned constraint formulation for improved 
+                    control precision.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">🔍</div>
+                        <span>Real-time Estimation</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">🎯</div>
+                        <span>Terrain Adaptive</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <h3>Bio-Inspired WAIR Implementation</h3>
+                <p>
+                    Translation of Wing-Assisted Incline Running principles from avian locomotion to 
+                    robotic systems. Integration of thrust vectoring for enhanced climbing and 
+                    terrain adaptability.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">🦅</div>
+                        <span>Nature-Inspired</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">🔄</div>
+                        <span>Thrust Vectoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="research-card">
+                <h3>Integrated Hardware-Software Platform</h3>
+                <p>
+                    End-to-end system development from CAD design to real-time control implementation. 
+                    Features carbon fiber construction, embedded 3D printing, and EtherCAT communication 
+                    architecture.
+                </p>
+                <div class="research-metrics">
+                    <div class="metric">
+                        <div class="metric-icon">🔧</div>
+                        <span>Full Stack Design</span>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-icon">💻</div>
+                        <span>HIL Validated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Publications</h2>
+            <div class="section-subtitle"></div>
+            <p class="section-description">
+                Peer-reviewed contributions to premier robotics conferences and journals
+            </p>
+        </div>
+
+        <div class="publications-container">
+            <div class="publication-year">2025 - Upcoming</div>
+            
+            <div class="publication-item">
+                <div class="publication-venue">
+                    IROS 2025 - International Conference on Intelligent Robots and Systems
+                    <span class="publication-status status-submitted">Submitted</span>
+                </div>
+                <div class="publication-title">
+                    "Thruster-assisted Stabilization of Frontal Dynamics in Dynamic Bipedal Locomotion"
+                </div>
+                <div class="publication-authors">
+                    <strong>S. Pitroda</strong>, E. Sihite, T. Liu, K. V. Krishnamurthy, C. Wang, A. Salagame, B. Gupta, I. Mandralis, A. Ramezani, M. Gharib
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-venue">
+                    CDC 2025 - Conference on Decision and Control (2 papers)
+                    <span class="publication-status status-submitted">Submitted</span>
+                </div>
+                <div class="publication-title">
+                    "Quadratic Programming Optimization for Bio-Inspired Thruster-Assisted Bipedal Locomotion on Inclined Slopes"
+                </div>
+                <div class="publication-authors">
+                    <strong>S. Pitroda</strong>, E. Sihite, K. V. Krishnamurthy, C. Wang, A. Salagame, A. Ramezani, M. Gharib
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-venue">
+                    ACC 2025 - American Control Conference (3 papers)
+                    <span class="publication-status status-accepted">Accepted</span>
+                </div>
+                <div class="publication-title">
+                    "Conjugate momentum based thruster force estimate in dynamic multimodal robot"
+                </div>
+                <div class="publication-authors">
+                    <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani
+                </div>
+            </div>
+
+            <div class="publication-year">2024 - Published</div>
+
+            <div class="publication-item">
+                <div class="publication-venue">
+                    Humanoids 2024
+                    <span class="publication-status status-published">Published</span>
+                </div>
+                <div class="publication-title">
+                    "Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using model predictive control"
+                </div>
+                <div class="publication-authors">
+                    E. Sihite, <strong>S. Pitroda</strong>, T. Liu, C. Wang, K. V. Krishnamurthy, A. Salagame, A. Ramezani, G. Morteza
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-venue">
+                    AIM 2024 - IEEE/ASME International Conference on Advanced Intelligent Mechatronics
+                    <span class="publication-status status-published">Published</span>
+                </div>
+                <div class="publication-title">
+                    "Capture Point Control in Thruster-Assisted Bipedal Locomotion"
+                </div>
+                <div class="publication-authors">
+                    <strong>S. Pitroda</strong>, A. Bondada, K.Venkatesh, A. Salagame, C. Wang, E. Sihite, R. Nemovi, A. Ramezani, M. Gharib
+                </div>
+            </div>
+
+            <div class="publication-item">
+                <div class="publication-venue">
+                    ACC 2024 - American Control Conference
+                    <span class="publication-status status-published">Published</span>
+                </div>
+                <div class="publication-title">
+                    "Quadrupedal Locomotion Control On Inclined Surfaces Using Collocation Method"
+                </div>
+                <div class="publication-authors">
+                    A. Salagame, M. Gianello, C. Wang, K. Venkatesh, <strong>S. Pitroda</strong>, R. Rajput, E. Sihite, M. Leeser, A. Ramezani
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Research Media</h2>
+            <div class="section-subtitle"></div>
+            <p class="section-description">
+                Video demonstrations and visualizations of our robotic systems in action
+            </p>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">Thruster-Assisted Walking on Flat Terrain</h4>
+                    <p class="video-description">
+                        First demonstration of stable bipedal locomotion with active thrust stabilization
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">Capture Point</span>
+                        <span class="tag">Hardware Demo</span>
+                        <span class="tag">Real-time Control</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">30° Incline Walking with QP-MPC</h4>
+                    <p class="video-description">
+                        Extreme terrain locomotion enabled by real-time optimization framework
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">QP-MPC</span>
+                        <span class="tag">Slope Walking</span>
+                        <span class="tag">Force Distribution</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">Dynamic Push Recovery</h4>
+                    <p class="video-description">
+                        Robustness demonstration under external disturbances using capture point control
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">Disturbance Rejection</span>
+                        <span class="tag">Stability</span>
+                        <span class="tag">EKF</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">Dynamic Wall-Jumping Maneuver</h4>
+                    <p class="video-description">
+                        Agile locomotion combining thrust vectoring with posture manipulation
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">MPC</span>
+                        <span class="tag">Agile Maneuvers</span>
+                        <span class="tag">Multimodal</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">MATLAB T-SLIP Animation for ICRA</h4>
+                    <p class="video-description">
+                        Simulation visualization showing robot dynamics across various terrain profiles
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">Simulation</span>
+                        <span class="tag">T-SLIP Model</span>
+                        <span class="tag">Visualization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-placeholder">
+                    <div class="play-button">
+                        <div class="play-icon"></div>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <h4 class="video-title">Harpy Hardware System Overview</h4>
+                    <p class="video-description">
+                        Complete electromechanical platform demonstration and component integration
+                    </p>
+                    <div class="video-tags">
+                        <span class="tag">Hardware</span>
+                        <span class="tag">System Integration</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="section-subtitle"></div>
+            <p class="section-description">
+                Academic and industry positions in robotics research and development
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">August 2025 - December 2025</div>
+                    <h3 class="timeline-title">Visiting Research Engineer</h3>
+                    <p class="timeline-org">California Institute of Technology</p>
+                    <p class="timeline-description">
+                        Collaboration with Prof. Morteza Gharib on advanced locomotion strategies and bio-inspired robotics
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">January 2022 - Present</div>
+                    <h3 class="timeline-title">Ph.D. Research Assistant</h3>
+                    <p class="timeline-org">Northeastern University</p>
+                    <p class="timeline-description">
+                        Leading the Harpy project development under Prof. Alireza Ramezani, focusing on multimodal locomotion
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">July 2022 - January 2023</div>
+                    <h3 class="timeline-title">R&D Electromechanical Engineer</h3>
+                    <p class="timeline-org">Siemens Healthineers - Endovascular Robotics</p>
+                    <p class="timeline-description">
+                        Medical robotics test fixture design, validation protocols, and system integration
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">January 2022 - December 2024</div>
+                    <h3 class="timeline-title">Teaching Assistant</h3>
+                    <p class="timeline-org">Northeastern University</p>
+                    <p class="timeline-description">
+                        Circuits/Signals, Statics, Dynamics, and Mechanics of Materials courses
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="section-subtitle"></div>
+            <p class="section-description">
+                Comprehensive skillset spanning control theory, software development, and hardware design
+            </p>
+        </div>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Control & Optimization</h3>
+                <ul class="skill-list">
+                    <li>Quadratic Programming MPC</li>
+                    <li>Capture Point Control</li>
+                    <li>Extended Kalman Filtering</li>
+                    <li>LQR/LQG Control Design</li>
+                    <li>Numerical Optimization (QPswift)</li>
+                    <li>Trajectory Optimization</li>
+                    <li>Whole Body Control</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Software Development</h3>
+                <ul class="skill-list">
+                    <li>MATLAB/Simulink Real-Time</li>
+                    <li>Python (NumPy, SciPy)</li>
+                    <li>C++ Real-Time Systems</li>
+                    <li>ROS/ROS2 Framework</li>
+                    <li>Pinocchio Dynamics Library</li>
+                    <li>Git Version Control</li>
+                    <li>Hardware-in-Loop Testing</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Hardware & Design</h3>
+                <ul class="skill-list">
+                    <li>SolidWorks CAD Design</li>
+                    <li>Topology Optimization</li>
+                    <li>3D Printing & Rapid Prototyping</li>
+                    <li>EtherCAT Communication</li>
+                    <li>Embedded Systems (STM32)</li>
+                    <li>Sensor Fusion (IMU/OptiTrack)</li>
+                    <li>Carbon Fiber Fabrication</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Research Domains</h3>
+                <ul class="skill-list">
+                    <li>Bipedal/Quadrupedal Locomotion</li>
+                    <li>Multimodal Robot Systems</li>
+                    <li>Bio-Inspired Robotics</li>
+                    <li>Dynamic Walking Control</li>
+                    <li>Aerial-Terrestrial Hybrids</li>
+                    <li>Motion Planning Algorithms</li>
+                    <li>Nonlinear Control Theory</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <p>
+                    Ph.D. candidate at Northeastern University advancing the field of multimodal robotics 
+                    through innovative thruster-assisted locomotion systems. My research bridges the gap 
+                    between aerial and terrestrial robotics, enabling unprecedented mobility in challenging environments.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <p><a href="#publications">Publications</a></p>
+                <p><a href="#research">Research Projects</a></p>
+                <p><a href="https://scholar.google.com/citations?user=GGIr1OEAAAAJ&hl=en">Google Scholar Profile</a></p>
+                <p><a href="https://www.linkedin.com/in/shreyansh-pitroda-16b4781b9/">LinkedIn</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📧 pitroda.s@northeastern.edu</p>
+                <p>📞 (857) 265-5286</p>
+                <p>📍 Boston, Massachusetts</p>
+                <p>🏛️ Northeastern University</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Shreyansh Pitroda | Advancing Multimodal Robotics</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'all 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.research-card, .publication-item, .timeline-content, .video-card, .skill-category').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.style.fontWeight = '500';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.fontWeight = '700';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
