@@ -144,24 +144,50 @@
         .profile-photo {
             width: 100%;
             aspect-ratio: 1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 1.2rem;
+            overflow: hidden;
+        }
+
+        .info-cards-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            width: 100%;
         }
 
         .info-card {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            padding: 2rem;
-            background: var(--bg-card);
+            background: var(--card-bg);
+            padding: 1.5rem;
             border-radius: 12px;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card h3 {
+            font-size: 0.85rem;
+            margin: 0;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            line-height: 1;
         }
 
         /* Section Styles */
@@ -334,16 +360,20 @@
 
             <div class="hero-right">
                 <div class="profile-photo">
-                    shreyansh_pitroda_photo.jpg
+                    <img src="shreyansh.jpg" alt="Shreyansh Pitroda" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">
                 </div>
                 
-                <div class="info-card">
-                    <div class="stat-number">11+</div>
-                    <div class="stat-label">Publications</div>
+                <div class="info-cards-container">
+                    <div class="info-card">
+                        <p class="info-number">13</p>
+                        <h3>Publications</h3>
+                    </div>
+        
+                    <div class="info-card">
+                        <p class="info-number">1</p>
+                        <h3>Patent</h3>
+                    </div>
                 </div>
-                <div class="info-card">
-                    <div class="stat-number">1</div>
-                    <div class="stat-label">US Patent</div>
             </div>
         </div>
 
