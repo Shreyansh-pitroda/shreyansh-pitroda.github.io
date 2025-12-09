@@ -154,21 +154,14 @@
         }
 
         .info-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 2rem;
+            background: var(--bg-card);
             border-radius: 12px;
             border: 1px solid var(--border-color);
-        }
-
-        .info-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .info-card p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
+            box-shadow: var(--shadow-md);
         }
 
         /* Section Styles */
@@ -330,10 +323,10 @@
                     <a href="mailto:pitroda.s@northeastern.edu" class="btn btn-primary">
                         📧 Contact Me
                     </a>
-                    <a href="#" class="btn btn-secondary">
+                    <a href="Shreyansh_CV.pdf" class="btn btn-secondary">
                         📄 Download CV
                     </a>
-                    <a href="#" class="btn btn-secondary">
+                    <a href="https://scholar.google.com/citations?user=GGIr1OEAAAAJ&hl=en" class="btn btn-secondary">
                         📚 Google Scholar
                     </a>
                 </div>
@@ -341,18 +334,16 @@
 
             <div class="hero-right">
                 <div class="profile-photo">
-                    [Your Photo Here]
+                    shreyansh_pitroda_photo.jpg
                 </div>
                 
                 <div class="info-card">
-                    <h3>Publications</h3>
-                    <p>13+ peer-reviewed papers in top robotics venues</p>
+                    <div class="stat-number">11+</div>
+                    <div class="stat-label">Publications</div>
                 </div>
-                
                 <div class="info-card">
-                    <h3>Active Projects</h3>
-                    <p>Harpy Robot Platform & QP-MPC Control Frameworks</p>
-                </div>
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">US Patent</div>
             </div>
         </div>
 
