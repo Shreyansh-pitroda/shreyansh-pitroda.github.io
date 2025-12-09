@@ -144,7 +144,6 @@
         .profile-photo {
             width: 100%;
             aspect-ratio: 1;
-            /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -198,8 +197,15 @@
 
         .section-title {
             font-size: 2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 0.5rem;
             color: var(--text-primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-style: italic;
         }
 
         /* News Section */
@@ -221,48 +227,7 @@
             color: var(--text-primary);
         }
 
-        /* Publications Section */
-        .publication-list {
-            list-style: none;
-            counter-reset: pub-counter;
-        }
-
-        .publication-list li {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-            position: relative;
-            counter-increment: pub-counter;
-        }
-
-        .publication-list li::before {
-            content: "[" counter(pub-counter) "]";
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .publication-authors {
-            color: var(--text-secondary);
-        }
-
-        .publication-venue {
-            font-style: italic;
-            color: var(--text-secondary);
-        }
-
-        .pdf-link {
-            color: var(--accent);
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-left: 0.5rem;
-        }
-
-        .pdf-link:hover {
-            text-decoration: underline;
-        }
-
-        /* Research Section */
+        /* Publications/Research Section */
         .research-item {
             display: grid;
             grid-template-columns: 1fr 400px;
@@ -283,6 +248,7 @@
         .research-abstract {
             color: var(--text-secondary);
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
         .research-media {
@@ -293,6 +259,17 @@
             align-items: center;
             justify-content: center;
             color: var(--text-secondary);
+        }
+
+        .pdf-link {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .pdf-link:hover {
+            text-decoration: underline;
         }
 
         /* Responsive */
@@ -323,7 +300,6 @@
             <ul class="nav-links">
                 <li><a href="#news">News</a></li>
                 <li><a href="#publications">Publications</a></li>
-                <li><a href="#research">Research</a></li>
             </ul>
         </div>
     </nav>
@@ -414,76 +390,23 @@
             </div>
         </section>
 
-        <!-- Publications Section -->
+        <!-- Combined Publications and Research Section -->
         <section id="publications">
             <h2 class="section-title">Publications</h2>
-            
-            <ol class="publication-list">
-                <li>
-                    <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani, M. Gharib. 
-                    "Trajectory optimization using QP and MPC for hopping on rough terrains with a thruster-augmented SLIP model." 
-                    <span class="publication-venue">IEEE Robotics and Automation Letters (RA-L), 2025 [Submitted]</span>
-                    <a href="#" class="pdf-link">[PDF]</a>
-                </li>
-                
-                <li>
-                    C. Wang, <strong>S. Pitroda</strong>, K.V. Krishnamurthy, et al. 
-                    "Dynamic Quadrupedal Legged and Aerial Locomotion Via Structure Repurposing." 
-                    <span class="publication-venue">IROS 2025, Hangzhou, China</span>
-                    <a href="#" class="pdf-link">[PDF]</a>
-                </li>
-                
-                <li>
-                    <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani. 
-                    "Conjugate momentum based thruster force estimate in dynamic multimodal robot." 
-                    <span class="publication-venue">ACC 2025, Denver, CO [Accepted]</span>
-                    <a href="#" class="pdf-link">[PDF]</a>
-                </li>
-                
-                <li>
-                    E. Sihite, <strong>S. Pitroda</strong>, et al. 
-                    "Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using MPC." 
-                    <span class="publication-venue">IEEE Humanoids 2024, Nancy, France</span>
-                    <a href="#" class="pdf-link">[PDF]</a>
-                </li>
-                
-                <li>
-                    <strong>S. Pitroda</strong>, A. Bondada, et al. 
-                    "Capture Point Control in Thruster-Assisted Bipedal Locomotion." 
-                    <span class="publication-venue">IEEE/ASME AIM 2024, Boston, MA</span>
-                    <a href="#" class="pdf-link">[PDF]</a>
-                </li>
-            </ol>
-        </section>
-
-        <!-- Research Section -->
-        <section id="research">
-            <h2 class="section-title">Research: Legged Robots with Locomotion Plasticity</h2>
+            <p class="section-subtitle">(Research focus: Legged robots with locomotion plasticity)</p>
             
             <div class="research-item">
                 <div class="research-content">
-                    <h3>Harpy: Thruster-Assisted Bipedal Platform</h3>
-                    <p class="research-abstract">
-                        Development of a 7kg bipedal robot with dual 5.5kg thrust thrusters achieving 1.5 thrust-to-weight ratio. 
-                        The platform features custom 3D-printed joints with 30% improved power density, carbon fiber construction, 
-                        and real-time control at 500Hz using EtherCAT communication. This hardware platform serves as a testbed 
-                        for validating novel multimodal locomotion strategies combining aerial and terrestrial capabilities.
-                    </p>
-                </div>
-                <div class="research-media">
-                    [GIF/Video Placeholder]
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>QP-MPC Framework for Extreme Terrain</h3>
+                    <h3>Trajectory Optimization for Hopping on Rough Terrains</h3>
                     <p class="research-abstract">
                         Real-time trajectory optimization framework enabling locomotion on 30° inclines and 0.2m step discontinuities. 
                         The approach uses Quadratic Programming with Model Predictive Control, achieving sub-3ms computation times 
                         while enforcing friction cone constraints and optimizing ground reaction forces. Successfully demonstrated 
                         on parkour-style environments with rapid velocity changes from -1 to 1 m/s.
+                        <br><br>
+                        <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani, M. Gharib. IEEE Robotics and Automation Letters (RA-L), 2025.
                     </p>
+                    <a href="#" class="pdf-link">[PDF]</a>
                 </div>
                 <div class="research-media">
                     [GIF/Video Placeholder]
@@ -498,7 +421,10 @@
                         geometric. By coordinating thrust-ground force regulation, the system achieves bidirectional exit velocities 
                         (-0.6 to 0.6 m/s) during wall contact while maintaining no-slip conditions. This enables wall-to-wall 
                         climbing in confined spaces, validated through high-fidelity Simscape simulations.
+                        <br><br>
+                        E. Sihite, <strong>S. Pitroda</strong>, et al. IEEE Humanoids 2024, Nancy, France.
                     </p>
+                    <a href="#" class="pdf-link">[PDF]</a>
                 </div>
                 <div class="research-media">
                     [GIF/Video Placeholder]
@@ -513,7 +439,45 @@
                         The system integrates Extended Kalman Filter for IMU/OptiTrack sensor fusion at 500Hz, enabling robust push 
                         recovery up to 50N disturbances. The controller improves stability margin by 45% during dynamic maneuvers 
                         compared to traditional approaches.
+                        <br><br>
+                        <strong>S. Pitroda</strong>, A. Bondada, et al. IEEE/ASME AIM 2024, Boston, MA.
                     </p>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </div>
+                <div class="research-media">
+                    [GIF/Video Placeholder]
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-content">
+                    <h3>Conjugate Momentum-Based Force Estimation</h3>
+                    <p class="research-abstract">
+                        Development of a momentum-based thruster force estimator for accurate force prediction under varying conditions. 
+                        The approach handles battery voltage drops, payload variations, and uneven terrain dynamics while maintaining 
+                        95% accuracy. Terrain-aware modeling with pinned constraint formulation improves control precision for 
+                        multimodal locomotion systems.
+                        <br><br>
+                        <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani. ACC 2025, Denver, CO.
+                    </p>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </div>
+                <div class="research-media">
+                    [GIF/Video Placeholder]
+                </div>
+            </div>
+
+            <div class="research-item">
+                <div class="research-content">
+                    <h3>Dynamic Structure Repurposing for Multimodal Locomotion</h3>
+                    <p class="research-abstract">
+                        Novel approach for quadrupedal robots to dynamically repurpose their structure for both legged and aerial 
+                        locomotion. The framework enables seamless transitions between walking, flying, and hybrid modes through 
+                        intelligent morphology adaptation and control allocation strategies.
+                        <br><br>
+                        C. Wang, <strong>S. Pitroda</strong>, K.V. Krishnamurthy, et al. IROS 2025, Hangzhou, China.
+                    </p>
+                    <a href="#" class="pdf-link">[PDF]</a>
                 </div>
                 <div class="research-media">
                     [GIF/Video Placeholder]
