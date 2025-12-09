@@ -183,71 +183,60 @@
             color: var(--text-primary);
         }
 
-        /* Highlights Section */
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        /* News Section */
+        #news {
+            padding-top: 2rem;
         }
 
-        .highlight-card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .highlight-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .highlight-label {
-            font-size: 0.9rem;
+        .news-list {
             color: var(--text-secondary);
-            margin-top: 0.5rem;
+        }
+
+        .news-item {
+            margin-bottom: 1rem;
+            padding-left: 0;
+        }
+
+        .news-date {
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         /* Publications Section */
-        .publication-item {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
+        .publication-list {
+            list-style: none;
+            counter-reset: pub-counter;
         }
 
-        .publication-item:hover {
-            border-left: 4px solid var(--primary-color);
-            transform: translateX(4px);
+        .publication-list li {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+            position: relative;
+            counter-increment: pub-counter;
         }
 
-        .publication-title {
+        .publication-list li::before {
+            content: "[" counter(pub-counter) "]";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
             font-weight: 600;
-            margin-bottom: 0.5rem;
         }
 
         .publication-authors {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
         }
 
         .publication-venue {
-            color: var(--primary-color);
-            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--text-secondary);
         }
 
         .pdf-link {
-            display: inline-block;
-            margin-top: 0.5rem;
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
         }
 
         .pdf-link:hover {
@@ -313,7 +302,7 @@
         <div class="nav-container">
             <div style="font-weight: 700; color: var(--primary-color);">Shreyansh Pitroda</div>
             <ul class="nav-links">
-                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#news">News</a></li>
                 <li><a href="#publications">Publications</a></li>
                 <li><a href="#research">Research</a></li>
             </ul>
@@ -367,33 +356,39 @@
             </div>
         </div>
 
-        <!-- Highlights Section -->
-        <section id="highlights">
-            <h2 class="section-title">Highlights & Achievements</h2>
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <div class="highlight-number">13+</div>
-                    <div class="highlight-label">Publications</div>
+        <!-- News Section -->
+        <section id="news">
+            <h2 class="section-title">News</h2>
+            <div class="news-list">
+                <div class="news-item">
+                    <span class="news-date">June 15, 2025</span> - Two paper accepted by IROS2025.
                 </div>
-                <div class="highlight-card">
-                    <div class="highlight-number">121</div>
-                    <div class="highlight-label">Citations</div>
+                <div class="news-item">
+                    <span class="news-date">June 5, 2025</span> - One paper accepted by RA-L.
                 </div>
-                <div class="highlight-card">
-                    <div class="highlight-number">7</div>
-                    <div class="highlight-label">h-index</div>
+                <div class="news-item">
+                    <span class="news-date">May 5, 2025</span> - Start my internship at Mitsubishi Electric Research Laboratories(MERL).
                 </div>
-                <div class="highlight-card">
-                    <div class="highlight-number">1</div>
-                    <div class="highlight-label">US Patent (Pending)</div>
+                <div class="news-item">
+                    <span class="news-date">Jan 16, 2025</span> - Three paper accepted by ACC 2025 including one <strong>Oral</strong>.
                 </div>
-                <div class="highlight-card">
-                    <div class="highlight-number">30°</div>
-                    <div class="highlight-label">Slope Walking Achieved</div>
+                <div class="news-item">
+                    <span class="news-date">Dec 11, 2024</span> - Passed the qualification exam. I am now officially a PhD candidate!
                 </div>
-                <div class="highlight-card">
-                    <div class="highlight-number">100Hz</div>
-                    <div class="highlight-label">Real-time Control</div>
+                <div class="news-item">
+                    <span class="news-date">Sep 9, 2024</span> - One paper accepted by Humanoid 2024.
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Sep 5, 2024</span> - One paper accepted by CoRL 2024.
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Jul 13, 2024</span> - Received student travel award from AIM 2024.
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Apr 21, 2024</span> - Two paper accepted by AIM 2024.
+                </div>
+                <div class="news-item">
+                    <span class="news-date">Jan 22, 2024</span> - One paper accepted by ACC 2024.
                 </div>
             </div>
         </section>
@@ -402,40 +397,42 @@
         <section id="publications">
             <h2 class="section-title">Publications</h2>
             
-            <div class="publication-item">
-                <div class="publication-title">Trajectory optimization using QP and MPC for hopping on rough terrains with a thruster-augmented SLIP model</div>
-                <div class="publication-authors">S. Pitroda, E. Sihite, A. Ramezani, M. Gharib</div>
-                <div class="publication-venue">IEEE Robotics and Automation Letters (RA-L), 2025 [Submitted]</div>
-                <a href="#" class="pdf-link">📄 PDF</a>
-            </div>
-
-            <div class="publication-item">
-                <div class="publication-title">Dynamic Quadrupedal Legged and Aerial Locomotion Via Structure Repurposing</div>
-                <div class="publication-authors">C. Wang, S. Pitroda, K.V. Krishnamurthy, et al.</div>
-                <div class="publication-venue">IROS 2025, Hangzhou, China</div>
-                <a href="#" class="pdf-link">📄 PDF</a>
-            </div>
-
-            <div class="publication-item">
-                <div class="publication-title">Conjugate momentum based thruster force estimate in dynamic multimodal robot</div>
-                <div class="publication-authors">S. Pitroda, E. Sihite, A. Ramezani</div>
-                <div class="publication-venue">ACC 2025, Denver, CO [Accepted]</div>
-                <a href="#" class="pdf-link">📄 PDF</a>
-            </div>
-
-            <div class="publication-item">
-                <div class="publication-title">Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using MPC</div>
-                <div class="publication-authors">E. Sihite, S. Pitroda, et al.</div>
-                <div class="publication-venue">IEEE Humanoids 2024, Nancy, France</div>
-                <a href="#" class="pdf-link">📄 PDF</a>
-            </div>
-
-            <div class="publication-item">
-                <div class="publication-title">Capture Point Control in Thruster-Assisted Bipedal Locomotion</div>
-                <div class="publication-authors">S. Pitroda, A. Bondada, et al.</div>
-                <div class="publication-venue">IEEE/ASME AIM 2024, Boston, MA</div>
-                <a href="#" class="pdf-link">📄 PDF</a>
-            </div>
+            <ol class="publication-list">
+                <li>
+                    <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani, M. Gharib. 
+                    "Trajectory optimization using QP and MPC for hopping on rough terrains with a thruster-augmented SLIP model." 
+                    <span class="publication-venue">IEEE Robotics and Automation Letters (RA-L), 2025 [Submitted]</span>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </li>
+                
+                <li>
+                    C. Wang, <strong>S. Pitroda</strong>, K.V. Krishnamurthy, et al. 
+                    "Dynamic Quadrupedal Legged and Aerial Locomotion Via Structure Repurposing." 
+                    <span class="publication-venue">IROS 2025, Hangzhou, China</span>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </li>
+                
+                <li>
+                    <strong>S. Pitroda</strong>, E. Sihite, A. Ramezani. 
+                    "Conjugate momentum based thruster force estimate in dynamic multimodal robot." 
+                    <span class="publication-venue">ACC 2025, Denver, CO [Accepted]</span>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </li>
+                
+                <li>
+                    E. Sihite, <strong>S. Pitroda</strong>, et al. 
+                    "Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using MPC." 
+                    <span class="publication-venue">IEEE Humanoids 2024, Nancy, France</span>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </li>
+                
+                <li>
+                    <strong>S. Pitroda</strong>, A. Bondada, et al. 
+                    "Capture Point Control in Thruster-Assisted Bipedal Locomotion." 
+                    <span class="publication-venue">IEEE/ASME AIM 2024, Boston, MA</span>
+                    <a href="#" class="pdf-link">[PDF]</a>
+                </li>
+            </ol>
         </section>
 
         <!-- Research Section -->
