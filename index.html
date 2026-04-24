@@ -230,44 +230,37 @@
             color: var(--text-primary);
         }
 
-        /* Publications/Research Section */
-        .research-item {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 2rem;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: var(--card-bg);
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
+        /* Publications Section */
+        .pub-list {
+            list-style: none;
         }
 
-        .research-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        .pub-item {
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-size: 1rem;
+            font-weight: 600;
             color: var(--text-primary);
+            margin-bottom: 0.25rem;
         }
 
-        .research-abstract {
+        .pub-meta {
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .research-media {
-            background: var(--bg-color);
-            border-radius: 8px;
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
         }
 
         .pdf-link {
             color: var(--accent);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
         }
 
@@ -283,10 +276,6 @@
             
             .hero-right {
                 order: -1;
-            }
-            
-            .research-item {
-                grid-template-columns: 1fr;
             }
             
             .nav-links {
@@ -387,108 +376,48 @@
             </div>
         </section>
 
-        <!-- Combined Publications and Research Section -->
+        <!-- Publications Section -->
         <section id="publications">
-            <h2 class="section-title">Publications (Research focus: Legged robots with locomotion plasticity) </h2>
-            
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Conjugate momentum based thruster force estimate in dynamic multimodal robot</h3>
-                    <p class="research-abstract">
-                        <strong>S. Pitroda</strong>, et al. 
-                        <br> 2025 American Control Conference (ACC).
-                    </p>
+            <h2 class="section-title">Publications</h2>
+            <p class="section-subtitle">Research focus: Legged robots with locomotion plasticity</p>
+
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <p class="pub-title">Conjugate momentum based thruster force estimate in dynamic multimodal robot</p>
+                    <p class="pub-meta"><strong>S. Pitroda</strong>, et al. &mdash; 2025 American Control Conference (ACC)</p>
                     <a href="https://ieeexplore.ieee.org/document/11108068" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\ACC_2025_Conjugate.png" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Quadratic Programming-Based Posture Manipulation and Thrust-vectoring for Agile Dynamic Walking on Narrow Pathways</h3>
-                    <p class="research-abstract">
-                        C. Wang, E. Sihite, K. Venkatesh, S. Pitroda, et al. 
-                        <br> 2025 American Control Conference (ACC).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Quadratic Programming-Based Posture Manipulation and Thrust-vectoring for Agile Dynamic Walking on Narrow Pathways</p>
+                    <p class="pub-meta">C. Wang, E. Sihite, K. Venkatesh, S. Pitroda, et al. &mdash; 2025 American Control Conference (ACC)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/11107989" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\ACC_2025_narrow_path.png" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Thruster-Assisted Incline Walking of a Legged-Aerial Robot Using Reduced Order Model and Collocation Method</h3>
-                    <p class="research-abstract">
-                        K. Venkatesh, C. Wang, S. Pitroda, et al. 
-                        <br> 2025 American Control Conference (ACC).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Thruster-Assisted Incline Walking of a Legged-Aerial Robot Using Reduced Order Model and Collocation Method</p>
+                    <p class="pub-meta">K. Venkatesh, C. Wang, S. Pitroda, et al. &mdash; 2025 American Control Conference (ACC)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/11107924" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\ACC_2025_WAIR_husky.png" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using model predictive control</h3>
-                    <p class="research-abstract">
-                        E. Sihite, S. Pitroda, K. Venkatesh, C. Wang, et al. 
-                        <br> 2024 IEEE-RAS 23rd International Conference on Humanoid Robots (Humanoids).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Posture manipulation of thruster-enhanced bipedal robot performing dynamic wall-jumping using model predictive control</p>
+                    <p class="pub-meta">E. Sihite, S. Pitroda, K. Venkatesh, C. Wang, et al. &mdash; 2024 IEEE-RAS 23rd International Conference on Humanoid Robots (Humanoids)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/10769831" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\Humanoid_2024_wall_jump.png" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Capture point control in thruster-assisted bipedal locomotion</h3>
-                    <p class="research-abstract">
-                        S. Pitroda,A. Bondada, K. Venkatesh, C. Wang, et al. 
-                        <br> 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Capture point control in thruster-assisted bipedal locomotion</p>
+                    <p class="pub-meta">S. Pitroda, A. Bondada, K. Venkatesh, C. Wang, et al. &mdash; 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/10637139" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\AIM_2024_capture_point_reduced.jpg" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Narrow-path, dynamic walking using integrated posture manipulation and thrust vectoring</h3>
-                    <p class="research-abstract">
-                        K. Venkatesh, C. Wang, S. Pitroda, et al. 
-                        <br> 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Narrow-path, dynamic walking using integrated posture manipulation and thrust vectoring</p>
+                    <p class="pub-meta">K. Venkatesh, C. Wang, S. Pitroda, et al. &mdash; 2024 IEEE International Conference on Advanced Intelligent Mechatronics (AIM)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/10637015" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\AIM_2024_narrow_walk_reduced.jpg" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
-            <div class="research-item">
-                <div class="research-content">
-                    <h3>Quadrupedal locomotion control on inclined surfaces using collocation method</h3>
-                    <p class="research-abstract">
-                        A. Salagame, M. Gianello, S. Pitroda, et al. 
-                        <br> 2024 American Control Conference (ACC).
-                    </p>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Quadrupedal locomotion control on inclined surfaces using collocation method</p>
+                    <p class="pub-meta">A. Salagame, M. Gianello, S. Pitroda, et al. &mdash; 2024 American Control Conference (ACC)</p>
                     <a href="https://ieeexplore.ieee.org/abstract/document/10644231" class="pdf-link">[Paper]</a>
-                </div>
-                <div class="research-media" style="padding: 10px; background: white;">
-                    <img src="\publication_data\ACC_2024_inclined_walking.png" alt="CP_based_walking" style="width: 100%; height: 100%; object-fit: contain; border-radius: 12px;">
-                </div>
-            </div>
-
+                </li>
+            </ul>
         </section>
     </div>
 
